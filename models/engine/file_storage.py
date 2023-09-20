@@ -11,8 +11,12 @@ class FileStorage:
     def all(self, cls=None):
         """Return a list of objects of a specified class (optional filtering)."""
         if cls is None:
-            return list(self.__objects.values())
-        return [obj for obj in self.__objects.values() if isinstance(obj, cls)]
+            return FileStorage.__objects
+        new_dict = {}
+        for key, val in FileStorage.__objects.items():
+            if isinstance(val,cls):
+                new_dict[key] = val
+        return my_dict
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
