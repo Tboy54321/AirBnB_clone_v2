@@ -16,6 +16,7 @@ from models.user import User
 all_classes = {
         'State': State,
         'City': City,
+        'User': User
         }
 
 
