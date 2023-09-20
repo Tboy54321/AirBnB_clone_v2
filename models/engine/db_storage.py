@@ -14,10 +14,6 @@ from models.review import Review
 from models.user import User
 
 all_classes = {
-        'Amenity': Amenity,
-        'User': User,
-        'Review': Review,
-        'Place': Place,
         'State': State,
         'City': City,
         }
