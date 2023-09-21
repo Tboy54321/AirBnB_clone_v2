@@ -64,3 +64,19 @@ class FileStorage:
             if key in self.__objects:
                 del self.__objects[key]
             self.save()
+
+    def cities(self, state_id):
+        cities = []
+        for obj_id, obj in self.__objects.items():
+            if obj.__class__.__name__ == 'City' and obj.state_id == state_id:
+                cities.append(obj)
+        return cities
+
+    @property
+    def reviews(self):
+        reviews = []
+        for obj_id, obj in self.__objects.items():
+            if obj.__class__.__name__ == 'Review' and obj.place_id == self.id:
+                reviews.append(obj)
+        return reviews
+

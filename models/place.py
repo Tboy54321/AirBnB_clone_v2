@@ -1,6 +1,9 @@
 #!/usr/bin/python3
+"""This module defines a class Place"""
 from sqlalchemy import Column, String, Integer, Float, ForeignKey
 from models.base_model import BaseModel, Base
+from sqlalchemy.orm import relationship
+
 
 class Place(BaseModel, Base):
     """Place class"""
@@ -15,3 +18,4 @@ class Place(BaseModel, Base):
     price_by_night = Column(Integer, nullable=False, default=0)
     latitude = Column(Float)
     longitude = Column(Float)
+    reviews = relationship("Review", backref="place", cascade="all, delete-orphan")
