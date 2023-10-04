@@ -12,7 +12,14 @@ sudo mkdir /data/web_static/releases/
 sudo mkdir /data/web_static/shared/
 sudo mkdir /data/web_static/releases/test/
 
-echo "<html><body>Hello Holberton</body></html>" | sudo tee /data/web_static/releases/test/index.html > /dev/null
+sudo echo "
+<html>
+  <head>
+  <head/>
+  <body>
+    Holberton School
+  </body>
+</html>" | sudo tee /data/web_static/releases/test/index.html > /dev/null
 
 sudo rm -rf /data/web_static/current
 sudo ln -s /data/web_static/releases/test/ /data/web_static/current
