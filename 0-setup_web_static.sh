@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 # Bash script that sets up your web servers for the deployment of web_static
 
-if ! command -v nginx &> /dev/null
-then
-	sudo apt update
-	sudon apt install -y nginx
-fi
+sudo apt update
+sudon apt install -y nginx
+sudo ufw allow 'Nginx HTTP'
 
 sudo mkdir /data/
 sudo mkdir /data/web_static/
