@@ -1,20 +1,21 @@
 #!/usr/bin/python3
-"""do_clean funtion"""
-from fabric import *
 import os
+from fabric.api import *
+
+env.hosts = ['18.233.64.67', '52.4.93.199']
 
 
 def do_clean(number=0):
-    """do clean funtion"""
-    try:
-        number = int(number)
-        if number > 1:
-            local("ls -1t versions/ | tail -n +{} | xargs -I {{}} rm versions/{{}}".format(number + 1))
-            run("ls -1t /data/web_static/releases/ | tail -n +{} | xargs -I {{}} sudo rm -rf /data/web_static/releases/{{}}".format(number + 1))
-            print("Cleaned archives successfully!")
-            return True
-    else:
-        return False
-    except Exception as e:
-        print("Error:", e)
-        return False
+    """do_clean method"""
+    number = 1 if int(number) == 0 else int(number)
+
+    archives = sorted(os.listdir("versions"))
+    [archives.pop() for i in range(number)]
+    with lcd("versions"):
+        [local("rm ./{}".format(a)) for a in archives]
+
+    with cd("/data/web_static/releases"):
+        archives = run("ls -tr").split()
+        archives = [a for a in archives if "web_static_" in a]
+        [archives.pop() for i in range(number)]
+        [run("rm -rf ./{}".format(a)) for a in archives]
