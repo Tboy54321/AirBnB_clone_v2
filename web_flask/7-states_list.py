@@ -1,4 +1,4 @@
-#!/use/bin/python3
+#!/usr/bin/python3
 """Script that displays and the render the sstates"""
 from flask import Flask, render_template
 from models import storage
