@@ -80,3 +80,5 @@ class FileStorage:
                 reviews.append(obj)
         return reviews
 
+    def close(self):
+        FileStorage.reload()
