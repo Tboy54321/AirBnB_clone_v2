@@ -2,6 +2,7 @@
 """Script that displays and the render the sstates"""
 from flask import Flask, render_template
 from models import storage
+from models.state import State
 
 
 app = Flask(__name__)
@@ -14,7 +15,7 @@ def display_states():
 
 
 @app.teardown_appcontext
-def close_strorage(self):
+def close_strorage(exception):
     storage.close()
 
 
